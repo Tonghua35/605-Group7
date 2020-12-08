@@ -32,3 +32,21 @@ for(i in names(clean_data)){
 }
 clean_data = clean_data[ , !(names(clean_data) %in% redundant)]
 
+# Cor
+sub_clean_data = clean_data[ , !(names(clean_data) %in% c('VCF0070a', 'VCF0070b', 'VCF0900c', 'VCF0901b'))]
+correlation = c()
+for(i in names(sub_clean_data)){
+  for(j in names(sub_clean_data)){
+    if(i!=j){
+      # print(j)
+      if(abs(cor(sub_clean_data[i], sub_clean_data[j])) == 1 ){
+        print(paste(i, j, cor(sub_clean_data[i], sub_clean_data[j])))
+      }
+    }
+  }
+}
+
+clean_data = clean_data[ , !(names(clean_data) %in% c('VCF0006, VCF0006a', 'VCF0010y', 'VCF0011y'))]
+
+# Output
+write.csv(clean_data, file="clean_data.csv")
