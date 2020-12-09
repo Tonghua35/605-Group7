@@ -4,6 +4,8 @@
 
 aa<-read.csv("clean_data.csv",header = T)
 
+#following the codebook, turn all the unknown and missing answer into NA.
+
 aa$VCF0104[which(aa$VCF0104==0)]<-NA
 aa$VCF0106[which(aa$VCF0106==9)]<-NA
 aa$VCF0108[which(aa$VCF0108==9|aa$VCF0108==8)]<-NA
@@ -284,7 +286,8 @@ del.name=c("VCF0006","VCF0006a","VCF0070b","VCF0071d","VCF0072b","VCF0101","VCF0
            "VCF0447","VCF0451","VCF0471","VCF0502a","VCF0704a","VCF0706","VCF0723","VCF0803","VCF0824",
            "VCF0824","VCF0867a","VCF0876a","VCF0879","VCF0880a","VCF0900","VCF0900b","VCF0900c","VCF0901a",
            "VCF0902","VCF1015","VCF1016","VCF9030","VCF9055","VCF9056","VCF9057","VCF9058","VCF9059",
-           "VCF9060","VCF9123","VCF9124","X")
+           "VCF9060","VCF9123","VCF9124","X") #Delete all variables that are meaningless, have repeated descriptions or more than 50 levels.
+
 selected_data = aa[ , !(names(aa) %in% del.name)]
 write.csv(selected_data,file = "selected_data.csv",row.names =T)
 
