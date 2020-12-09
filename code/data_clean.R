@@ -10,7 +10,7 @@ clean_data=clean_data[clean_data$VCF0013==1,]
 all_na = c()
 for(i in names(clean_data)){
   # print(i)
-  if(all(is.na(table(clean_data[i])))){
+  if(all(is.na(clean_data[i]))){
     all_na = c(all_na, i)
   }
 }
